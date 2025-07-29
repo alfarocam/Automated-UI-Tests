@@ -1,0 +1,36 @@
+package com.automationexercise;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HomePageTest {
+
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\camil\\DriversCS\\chromedriver-win64\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://automationexercise.com/");
+    }
+
+    @Test
+    public void testTitle() {
+        String expectedTitle = "Automation Exercise";
+        String actualTitle = driver.getTitle();
+        assertEquals("El título no coincide con el esperado", expectedTitle, actualTitle);
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
